@@ -2,6 +2,14 @@
 
 const args = process.argv
 const command = args[2]
+console.log('Hola ' + process.argv[2])
+
+const fs = require('fs')
+const data = require('./data.json')
+const package = require('./package.json')
+console.log(data);
+console.log(package);
+
 
 function main() {
 	switch (command) {
@@ -14,7 +22,40 @@ function main() {
 			showVersion()
 			break
 
-		// AQUÍ TU CÓDIGO PARA PROCESAR OTROS COMANDOS
+		case '--getNew':
+		case '-gn':
+			createTask()
+			break
+
+		case '--getList':
+		case '-gl':
+			getTasks()
+			break
+
+		case '--getTaskId':
+		case '-gti':
+			getTaskById()
+			break
+
+		case '--getSaveUpdate':
+		case '-gs':
+			saveData()
+			break
+			
+		case '--getUpdate':
+		case '-gu':
+			updateTask()
+			break
+
+		case '--getDelete':
+		case '-gd':
+			deleteTask()
+			break
+
+		case '--getClear':
+		case '-gc':
+			clearTasks()
+			break
 
 		default:
 			console.log(args)
@@ -36,34 +77,48 @@ function showHelp() {
 	console.log('  clear: Eliminar todas las tareas')
 }
 
+
+
 function showVersion() {
+	//todo enseña la versión
 	console.log('task v1.0.0')
 }
-
+//! -gl
 function getTasks() {
-	// AQUI TU CÓDIGO
+	const lista = JSON.parse(JSON.stringify(data))
+	//todo lista de todas las tareas
+	console.log('getTasks');
 }
-
+//! -gti
 function getTaskById(id) {
-	// AQUI TU CÓDIGO
+	//todo obtener una tarea por su ID
+	console.log('getTaskById');
 }
-
+//! -gs
 function saveData(newData) {
-	// AQUI TU CÓDIGO
-}
+	const newData1 = fs.readFileSync('./data.json', 'utf8')
+	console.log(newData1);
 
+	//todo guarda un nuevo data
+	console.log('saveData');
+}
+//! -gn
 function createTask(body) {
-	// AQUÍ TU CÓDIGO
+	//todo crea una nueva tarea
+	console.log('createTask');
 }
-
+//! -gu
 function updateTask(id, body) {
-	// AQUI TU CÓDIGO
+	//todo update una task
+	console.log('updateTask');
 }
-
+//! -gd
 function deleteTask(id) {
-	//AQUÍ TU CÓDIGO
+	//todo elimina UNA tarea
+	console.log('deleteTask');
 }
-
+//! -gc
 function clearTasks() {
-	//AQUÍ TU CÓDIGO
+	//todo elimina TODAS las tareas
+	console.log('getclearTasksTaskById');
 }
